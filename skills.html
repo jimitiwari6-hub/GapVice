@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Your Skills — Skill Match</title>
+  <title>Add Your Skills — GapVice</title>
   <meta name="description" content="Enter your skills and proficiency levels for AI-powered job readiness analysis." />
   <link rel="stylesheet" href="styles.css?v=3" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
@@ -15,7 +15,7 @@
   <div class="nav-container">
     <a href="index.html" class="nav-logo">
       <div class="logo-icon">🎯</div>
-      <span>Skill Match</span>
+      <span>GapVice</span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
@@ -126,18 +126,6 @@
           </div>
         </div>
 
-        <!-- Proficiency Selector -->
-        <div style="margin-top:20px;">
-          <label class="form-label">Proficiency Level</label>
-          <div class="proficiency-selector" id="proficiencySelector">
-            <button class="prof-btn" data-level="Beginner" onclick="setProficiency(this)">🟢 Beginner</button>
-            <button class="prof-btn selected" data-level="Intermediate" onclick="setProficiency(this)">🔵 Intermediate</button>
-            <button class="prof-btn" data-level="Advanced" onclick="setProficiency(this)">🟠 Advanced</button>
-          </div>
-          <div style="margin-top:10px;padding:10px 14px;background:var(--surface);border-radius:var(--radius);font-size:.82rem;color:var(--text-secondary);" id="proficiencyDesc">
-            🔵 <strong>Intermediate:</strong> You have working knowledge and can apply this skill in real projects with some guidance.
-          </div>
-        </div>
       </div>
     </div>
 
@@ -191,6 +179,34 @@
 
 <!-- Toast Container -->
 <div class="toast-container" id="toastContainer"></div>
+
+<!-- Proficiency Modal -->
+<div id="proficiencyModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+  <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;max-width:450px;width:90%;box-shadow:var(--shadow-xl);position:relative;animation:bounceIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);">
+    <button onclick="closeProficiencyModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted);">&times;</button>
+    <div style="font-size:2.5rem;margin-bottom:16px;" id="modalSkillIcon">🔧</div>
+    <h3 style="font-size:1.3rem;margin-bottom:6px;font-weight:800;">Add <span id="modalSkillName" class="text-gradient">Skill</span></h3>
+    <p style="font-size:0.95rem;color:var(--text-secondary);margin-bottom:24px;">Select your proficiency level for this skill.</p>
+    
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <button class="prof-modal-btn" data-level="Beginner" onclick="selectModalProficiency('Beginner')" style="text-align:left;padding:16px;background:var(--bg-card);border:2px solid var(--border);border-radius:var(--radius-md);cursor:pointer;transition:all 0.2s;">
+        <div style="font-weight:700;font-size:1rem;color:var(--text-primary);">🟢 Beginner</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">Basic theoretical knowledge</div>
+      </button>
+      <button class="prof-modal-btn" data-level="Intermediate" onclick="selectModalProficiency('Intermediate')" style="text-align:left;padding:16px;background:var(--bg-card);border:2px solid var(--primary);border-radius:var(--radius-md);cursor:pointer;transition:all 0.2s;">
+        <div style="font-weight:700;font-size:1rem;color:var(--text-primary);">🔵 Intermediate</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">Working knowledge, project experience</div>
+      </button>
+      <button class="prof-modal-btn" data-level="Advanced" onclick="selectModalProficiency('Advanced')" style="text-align:left;padding:16px;background:var(--bg-card);border:2px solid var(--border);border-radius:var(--radius-md);cursor:pointer;transition:all 0.2s;">
+        <div style="font-weight:700;font-size:1rem;color:var(--text-primary);">🟠 Advanced</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">Highly proficient, independent worker</div>
+      </button>
+    </div>
+    <div style="margin-top:24px;">
+      <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" onclick="confirmAddSkill()">Confirm & Add</button>
+    </div>
+  </div>
+</div>
 
 <script src="app.js?v=2"></script>
 <script>
@@ -458,6 +474,8 @@ let selectedProficiency = 'Intermediate';
 let addedSkills = []; // [{name, level}]
 let currentRole = '';
 let currentRoleData = null;
+let pendingSkillName = null;
+let pendingSkillChip = null;
 
 /* ══════════ INIT ══════════ */
 function init() {
@@ -504,14 +522,11 @@ function togglePresetSkill(skillName, chip) {
     chip.classList.remove('added');
     chip.querySelector('.chip-icon').textContent = '+';
     showToast(`"${skillName}" removed`, 'error');
+    saveSkills();
+    renderSkillList();
   } else {
-    addedSkills.push({ name: skillName, level: selectedProficiency });
-    chip.classList.add('added');
-    chip.querySelector('.chip-icon').textContent = '✓';
-    showToast(`✓ "${skillName}" added as ${selectedProficiency}`, 'success');
+    openProficiencyModal(skillName, chip);
   }
-  saveSkills();
-  renderSkillList();
 }
 
 function addAllPreset() {
@@ -544,11 +559,8 @@ function addCustomSkill() {
     showToast(`"${skillName}" is already in your list!`, 'warning'); input.value = ''; return;
   }
 
-  addedSkills.push({ name: skillName, level: selectedProficiency });
-  input.value = ''; hideSuggestions();
-  renderSkillList(); saveSkills();
-  renderPresetChips();
-  showToast(`✓ "${skillName}" added!`, 'success');
+  hideSuggestions();
+  openProficiencyModal(skillName, null);
 }
 
 function removeSkill(idx) {
@@ -615,10 +627,57 @@ function getSkillEmoji(name) {
 }
 
 function setProficiency(btn) {
-  document.querySelectorAll('.prof-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedProficiency = btn.dataset.level;
-  document.getElementById('proficiencyDesc').innerHTML = PROFICIENCY_DESCS[selectedProficiency];
+  // Legacy function for inline prof selector if it existed
+}
+
+function openProficiencyModal(skillName, chip) {
+  pendingSkillName = skillName;
+  pendingSkillChip = chip;
+  document.getElementById('modalSkillName').textContent = skillName;
+  document.getElementById('modalSkillIcon').textContent = getSkillEmoji(skillName);
+  
+  selectModalProficiency('Intermediate'); // Default selection
+  document.getElementById('proficiencyModal').style.display = 'flex';
+}
+
+function selectModalProficiency(level) {
+  selectedProficiency = level;
+  document.querySelectorAll('.prof-modal-btn').forEach(btn => {
+    if(btn.dataset.level === level) {
+      btn.style.borderColor = 'var(--primary)';
+    } else {
+      btn.style.borderColor = 'var(--border)';
+    }
+  });
+}
+
+function closeProficiencyModal() {
+  document.getElementById('proficiencyModal').style.display = 'none';
+  pendingSkillName = null;
+  pendingSkillChip = null;
+}
+
+function confirmAddSkill() {
+  if (!pendingSkillName) return;
+  
+  addedSkills.push({ name: pendingSkillName, level: selectedProficiency });
+  
+  if (pendingSkillChip) {
+    // If it was a chip, mark it added
+    pendingSkillChip.classList.add('added');
+    pendingSkillChip.querySelector('.chip-icon').textContent = '✓';
+  } else {
+    // If it was custom input, clear it
+    const input = document.getElementById('skillInput');
+    if (input.value.trim().toLowerCase() === pendingSkillName.toLowerCase()) {
+      input.value = '';
+    }
+  }
+  
+  saveSkills();
+  renderSkillList();
+  renderPresetChips();
+  closeProficiencyModal();
 }
 
 function handleAutocomplete() {
