@@ -1061,7 +1061,7 @@
     /* Load Custom Roles and Hide Removed Built-ins */
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Hide removed built-in roles
-      const hiddenRoles = JSON.parse(localStorage.getItem('skillmatch_hidden_roles') || '[]');
+      const hiddenRoles = JSON.parse(localStorage.getItem('gapvice_hidden_roles') || '[]');
       if (hiddenRoles.length > 0) {
         document.querySelectorAll('.role-card-sm').forEach(card => {
           if (hiddenRoles.includes(card.getAttribute('data-role'))) {
@@ -1071,7 +1071,7 @@
       }
 
       // 2. Inject custom roles
-      const customRoles = JSON.parse(localStorage.getItem('skillmatch_custom_roles') || '[]');
+      const customRoles = JSON.parse(localStorage.getItem('gapvice_custom_roles') || '[]');
       customRoles.forEach((role, i) => {
         const catSection = document.querySelector(`.category-section[data-cat="${role.category}"]`);
         if (!catSection) return;
