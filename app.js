@@ -117,7 +117,7 @@ function initPageLoader() {
   loader.innerHTML = `
     <div class="page-loader-icon">🎯</div>
     <div class="page-loader-bar-wrap"><div class="page-loader-bar"></div></div>
-    <div style="color:rgba(255,255,255,.75);font-size:.85rem;font-weight:600;letter-spacing:.05em;">Skill Match</div>
+    <div style="color:rgba(255,255,255,.75);font-size:.85rem;font-weight:600;letter-spacing:.05em;">GapVice</div>
   `;
   document.body.appendChild(loader);
   setTimeout(() => {
@@ -142,7 +142,7 @@ function initTheme() {
     const cur = document.documentElement.getAttribute('data-theme');
     const next = cur === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('skillmatch_theme', next);
+    localStorage.setItem('gapvice_theme', next);
     updateIcon();
     showToast(next === 'dark' ? '🌙 Dark mode on' : '☀️ Light mode on', 'default', 1800);
   });
