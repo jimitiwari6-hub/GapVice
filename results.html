@@ -34,7 +34,7 @@
   <div class="nav-container">
     <a href="index.html" class="nav-logo">
       <div class="logo-icon">🎯</div>
-      <span>Skill Match</span>
+      <span>GapVice</span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
@@ -267,6 +267,16 @@
       <!-- Populated by JS -->
     </div>
 
+    <!-- ── RECOMMENDED COURSES ── -->
+    <div style="margin:40px 0 16px;" class="animate-fade-up animate-delay-5">
+      <div class="section-label">Targeted Learning</div>
+      <h2 class="section-title" style="font-size:1.6rem;">📚 Recommended Courses</h2>
+      <p style="color:var(--text-secondary);font-size:.95rem;margin-top:4px;">Top-rated courses to help you bridge your skill gaps.</p>
+    </div>
+    <div id="courseList" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;" class="animate-fade-up animate-delay-6">
+      <!-- Populated by JS -->
+    </div>
+
     <!-- ── BOTTOM CTA ── -->
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid var(--border);" class="animate-fade-up animate-delay-5">
       <a href="roles.html" class="btn btn-secondary btn-lg">🔄 Try Another Role</a>
@@ -301,7 +311,9 @@ const ROLE_DATA = {
       { title:'System Design Interview Prep', platform:'Coursera', icon:'⚙️', color:'#a855f7', duration:'20 hrs', rating:'4.9', url:'https://www.coursera.org/learn/system-design' },
       { title:'Advanced Java Programming', platform:'Coursera', icon:'☕', color:'#f59e0b', duration:'25 hrs', rating:'4.7', url:'https://www.coursera.org/specializations/java-programming' },
       { title:'React - The Complete Guide', platform:'Udemy', icon:'⚛️', color:'#06b6d4', duration:'45 hrs', rating:'4.8', url:'https://www.udemy.com/course/react-the-complete-guide-incl-redux/' },
-      { title:'Mastering Git and GitHub', platform:'YouTube', icon:'🐙', color:'#ef4444', duration:'10 hrs', rating:'4.9', url:'https://www.youtube.com/results?search_query=git+and+github+tutorial' }
+      { title:'Version Control with Git', platform:'Coursera', icon:'🐙', color:'#ef4444', duration:'10 hrs', rating:'4.9', url:'https://www.coursera.org/learn/version-control-with-git' },
+      { title:'Advanced SQL for Developers', platform:'Pluralsight', icon:'🗄️', color:'#10b981', duration:'12 hrs', rating:'4.7', url:'https://www.pluralsight.com/courses/advanced-sql-developers' },
+      { title:'REST API Design', platform:'edX', icon:'🔗', color:'#6366f1', duration:'15 hrs', rating:'4.8', url:'https://www.edx.org/' }
     ],
     suggestions: [
       { icon:'🎯', title:'Focus on DSA First', desc:'Data Structures & Algorithms are tested in every tech interview. Solve 150+ problems on LeetCode starting with Easy, then Medium.' },
@@ -321,10 +333,12 @@ const ROLE_DATA = {
     courses: [
       { title:'Selenium WebDriver Bootcamp', platform:'Udemy', icon:'🧪', color:'#10b981', duration:'30 hrs', rating:'4.8', url:'https://www.udemy.com/course/selenium-real-time-examplesinterview-questions/' },
       { title:'Cypress - Modern Automation', platform:'Udemy', icon:'⚙️', color:'#6366f1', duration:'20 hrs', rating:'4.7', url:'https://www.udemy.com/course/cypress-tutorial/' },
-      { title:'Postman API Testing', platform:'YouTube', icon:'🌐', color:'#f59e0b', duration:'5 hrs', rating:'4.9', url:'https://www.youtube.com/results?search_query=postman+api+testing+crash+course' },
+      { title:'Postman API Testing', platform:'Udemy', icon:'🌐', color:'#f59e0b', duration:'10 hrs', rating:'4.9', url:'https://www.udemy.com/course/postman-the-complete-guide/' },
       { title:'Playwright with JS', platform:'Udemy', icon:'🎭', color:'#a855f7', duration:'22 hrs', rating:'4.8', url:'https://www.udemy.com/course/playwright-tutorials-automation-testing/' },
       { title:'Jira for Beginners', platform:'Coursera', icon:'📝', color:'#10b981', duration:'8 hrs', rating:'4.6', url:'https://www.coursera.org/learn/agile-atlassian-jira' },
-      { title:'SQL for QA Engineers', platform:'YouTube', icon:'🗄️', color:'#f59e0b', duration:'12 hrs', rating:'4.8', url:'https://www.youtube.com/results?search_query=sql+for+qa' }
+      { title:'SQL for QA Engineers', platform:'edX', icon:'🗄️', color:'#f59e0b', duration:'12 hrs', rating:'4.8', url:'https://www.edx.org/' },
+      { title:'Software Testing Fundamentals', platform:'Coursera', icon:'🧪', color:'#6366f1', duration:'15 hrs', rating:'4.7', url:'https://www.coursera.org/specializations/software-testing-automation' },
+      { title:'Automated Testing with JUnit', platform:'Pluralsight', icon:'☕', color:'#10b981', duration:'8 hrs', rating:'4.6', url:'https://www.pluralsight.com/' }
     ],
     suggestions: [
       { icon:'⚙️', title:'Shift to Automation', desc:'Manual testing is a great start, but automation (Selenium, Cypress, Playwright) is where the demand and high salaries are.' },
@@ -344,10 +358,12 @@ const ROLE_DATA = {
     courses: [
       { title:'Technical Writing Masterclass', platform:'Udemy', icon:'✍️', color:'#ec4899', duration:'10 hrs', rating:'4.7', url:'https://www.udemy.com/course/technical-writing-and-editing/' },
       { title:'Documenting APIs', platform:'IdRatherBeWriting', icon:'🌐', color:'#10b981', duration:'Self-paced', rating:'4.9', url:'https://idratherbewriting.com/learnapidoc/' },
-      { title:'Git & GitHub for Writers', platform:'YouTube', icon:'📂', color:'#f59e0b', duration:'3 hrs', rating:'4.8', url:'https://www.youtube.com/results?search_query=git+for+technical+writers' },
-      { title:'Docusaurus Crash Course', platform:'YouTube', icon:'🦖', color:'#10b981', duration:'3 hrs', rating:'4.8', url:'https://www.youtube.com/results?search_query=docusaurus+tutorial' },
+      { title:'Git & GitHub for Writers', platform:'Udemy', icon:'📂', color:'#f59e0b', duration:'5 hrs', rating:'4.8', url:'https://www.udemy.com/course/git-github-for-writers/' },
+      { title:'Introduction to Docusaurus', platform:'Pluralsight', icon:'🦖', color:'#10b981', duration:'4 hrs', rating:'4.8', url:'https://www.pluralsight.com/' },
       { title:'Markdown & Docs-as-Code', platform:'Udemy', icon:'📝', color:'#6366f1', duration:'5 hrs', rating:'4.7', url:'https://www.udemy.com/course/markdown-crash-course/' },
-      { title:'Swagger OpenAPI Spec', platform:'Udemy', icon:'🌐', color:'#f59e0b', duration:'8 hrs', rating:'4.6', url:'https://www.udemy.com/course/openapi-swagger/' }
+      { title:'Swagger OpenAPI Spec', platform:'Udemy', icon:'🌐', color:'#f59e0b', duration:'8 hrs', rating:'4.6', url:'https://www.udemy.com/course/openapi-swagger/' },
+      { title:'Writing in the Sciences', platform:'Coursera', icon:'🔬', color:'#a855f7', duration:'15 hrs', rating:'4.9', url:'https://www.coursera.org/learn/sciwrite' },
+      { title:'Technical Writing Essentials', platform:'edX', icon:'📖', color:'#06b6d4', duration:'12 hrs', rating:'4.7', url:'https://www.edx.org/' }
     ],
     suggestions: [
       { icon:'📖', title:'Master Docs-as-Code', desc:'Learn to write docs using Markdown and manage them via Git just like software source code.' },
@@ -367,10 +383,12 @@ const ROLE_DATA = {
     courses: [
       { title:'Google UX Design Professional Certificate', platform:'Coursera', icon:'🎨', color:'#a855f7', duration:'6 months', rating:'4.8', url:'https://www.coursera.org/professional-certificates/google-ux-design' },
       { title:'UI/UX Design Masterclass', platform:'Udemy', icon:'✏️', color:'#6366f1', duration:'25 hrs', rating:'4.7', url:'https://www.udemy.com/course/user-experience-design-fundamentals/' },
-      { title:'Figma Complete Course', platform:'YouTube', icon:'🖌️', color:'#10b981', duration:'8 hrs', rating:'4.9', url:'https://www.youtube.com/results?search_query=figma+complete+course' },
-      { title:'Advanced Prototyping in Figma', platform:'YouTube', icon:'⚡', color:'#f59e0b', duration:'5 hrs', rating:'4.9', url:'https://www.youtube.com/results?search_query=advanced+figma+prototyping' },
+      { title:'Figma UI UX Design Essentials', platform:'Udemy', icon:'🖌️', color:'#10b981', duration:'12 hrs', rating:'4.9', url:'https://www.udemy.com/course/figma-ux-ui-design-user-experience-tutorial-course/' },
+      { title:'Prototyping with Figma', platform:'Coursera', icon:'⚡', color:'#f59e0b', duration:'10 hrs', rating:'4.9', url:'https://www.coursera.org/' },
       { title:'Web Accessibility (WCAG)', platform:'Coursera', icon:'♿', color:'#06b6d4', duration:'15 hrs', rating:'4.8', url:'https://www.coursera.org/learn/accessibility' },
-      { title:'Color Theory Basics', platform:'Skillshare', icon:'🌈', color:'#ef4444', duration:'6 hrs', rating:'4.7', url:'https://www.skillshare.com/' }
+      { title:'Color Theory Basics', platform:'Skillshare', icon:'🌈', color:'#ef4444', duration:'6 hrs', rating:'4.7', url:'https://www.skillshare.com/' },
+      { title:'Interaction Design Specialization', platform:'Coursera', icon:'🖱️', color:'#f59e0b', duration:'3 months', rating:'4.8', url:'https://www.coursera.org/specializations/interaction-design' },
+      { title:'UX Research Methods', platform:'edX', icon:'🔬', color:'#10b981', duration:'20 hrs', rating:'4.7', url:'https://www.edx.org/' }
     ],
     suggestions: [
       { icon:'🖼️', title:'Build a Strong Portfolio', desc:'For UI/UX, portfolio beats everything. Complete 3–5 well-documented case studies showing your process from research to final design.' },
@@ -393,7 +411,9 @@ const ROLE_DATA = {
       { title:'Linux for Cybersecurity', platform:'Coursera', icon:'🐧', color:'#a855f7', duration:'12 hrs', rating:'4.6', url:'https://www.coursera.org/courses?query=linux%20security' },
       { title:'Advanced Penetration Testing', platform:'Udemy', icon:'🛡️', color:'#10b981', duration:'30 hrs', rating:'4.8', url:'https://www.udemy.com/course/advanced-penetration-testing/' },
       { title:'Splunk Core Certified Power User', platform:'Udemy', icon:'🔍', color:'#f59e0b', duration:'15 hrs', rating:'4.6', url:'https://www.udemy.com/course/splunk-core-certified-power-user/' },
-      { title:'Python for Cybersecurity', platform:'Coursera', icon:'🐍', color:'#6366f1', duration:'20 hrs', rating:'4.7', url:'https://www.coursera.org/learn/python-for-cybersecurity' }
+      { title:'Python for Cybersecurity', platform:'Coursera', icon:'🐍', color:'#6366f1', duration:'20 hrs', rating:'4.7', url:'https://www.coursera.org/learn/python-for-cybersecurity' },
+      { title:'Network Defense Essentials', platform:'edX', icon:'🌐', color:'#06b6d4', duration:'20 hrs', rating:'4.8', url:'https://www.edx.org/' },
+      { title:'Cybersecurity Risk Management', platform:'Coursera', icon:'📋', color:'#f59e0b', duration:'10 hrs', rating:'4.7', url:'https://www.coursera.org/' }
     ],
     suggestions: [
       { icon:'🔒', title:'Get CompTIA Security+', desc:'CompTIA Security+ is the most widely recognized entry-level cybersecurity certification. It validates your baseline knowledge and is required by many employers.' },
@@ -416,7 +436,9 @@ const ROLE_DATA = {
       { title:'Deep Learning Specialization', platform:'Coursera', icon:'🧠', color:'#a855f7', duration:'5 months', rating:'4.9', url:'https://www.coursera.org/specializations/deep-learning' },
       { title:'SQL for Data Science', platform:'Coursera', icon:'🗄️', color:'#f59e0b', duration:'20 hrs', rating:'4.8', url:'https://www.coursera.org/learn/sql-for-data-science' },
       { title:'Data Visualization with Tableau', platform:'Coursera', icon:'📈', color:'#ef4444', duration:'25 hrs', rating:'4.7', url:'https://www.coursera.org/learn/data-visualization-tableau' },
-      { title:'Advanced Natural Language Processing', platform:'Coursera', icon:'🗣️', color:'#a855f7', duration:'30 hrs', rating:'4.9', url:'https://www.coursera.org/specializations/natural-language-processing' }
+      { title:'Advanced Natural Language Processing', platform:'Coursera', icon:'🗣️', color:'#a855f7', duration:'30 hrs', rating:'4.9', url:'https://www.coursera.org/specializations/natural-language-processing' },
+      { title:'Probability and Statistics for Data', platform:'edX', icon:'🧮', color:'#10b981', duration:'20 hrs', rating:'4.8', url:'https://www.edx.org/' },
+      { title:'TensorFlow Developer Certificate', platform:'Coursera', icon:'🔮', color:'#ec4899', duration:'4 months', rating:'4.8', url:'https://www.coursera.org/professional-certificates/tensorflow-in-practice' }
     ],
     suggestions: [
       { icon:'📊', title:'Master Pandas & NumPy', desc:'These are the bread and butter of data science in Python. Get comfortable with data manipulation, cleaning, and EDA before moving to ML.' },
@@ -437,9 +459,11 @@ const ROLE_DATA = {
       { title:'Data Engineering Basics', platform:'Coursera', icon:'📊', color:'#10b981', duration:'20 hrs', rating:'4.8', url:'https://www.coursera.org/specializations/data-engineering-foundations' },
       { title:'Apache Spark with Python', platform:'Udemy', icon:'⚡', color:'#f59e0b', duration:'15 hrs', rating:'4.7', url:'https://www.udemy.com/course/spark-and-python-for-big-data-with-pyspark/' },
       { title:'Data Warehouse on AWS', platform:'Coursera', icon:'☁️', color:'#6366f1', duration:'12 hrs', rating:'4.8', url:'https://www.coursera.org/learn/data-warehouse-aws' },
-      { title:'Apache Airflow Tutorial', platform:'YouTube', icon:'🔄', color:'#ec4899', duration:'8 hrs', rating:'4.8', url:'https://www.youtube.com/results?search_query=apache+airflow+tutorial' },
+      { title:'Data Orchestration with Airflow', platform:'Udemy', icon:'🔄', color:'#ec4899', duration:'10 hrs', rating:'4.8', url:'https://www.udemy.com/course/the-ultimate-hands-on-course-to-master-apache-airflow/' },
       { title:'Snowflake Masterclass', platform:'Udemy', icon:'❄️', color:'#06b6d4', duration:'20 hrs', rating:'4.7', url:'https://www.udemy.com/course/snowflake-masterclass/' },
-      { title:'Kafka for Beginners', platform:'Udemy', icon:'📨', color:'#10b981', duration:'12 hrs', rating:'4.6', url:'https://www.udemy.com/course/apache-kafka/' }
+      { title:'Kafka for Beginners', platform:'Udemy', icon:'📨', color:'#10b981', duration:'12 hrs', rating:'4.6', url:'https://www.udemy.com/course/apache-kafka/' },
+      { title:'Big Data Analysis with Scala', platform:'Coursera', icon:'💎', color:'#a855f7', duration:'18 hrs', rating:'4.7', url:'https://www.coursera.org/' },
+      { title:'Azure Data Engineer Associate', platform:'Coursera', icon:'Ⓜ️', color:'#06b6d4', duration:'30 hrs', rating:'4.8', url:'https://www.coursera.org/' }
     ],
     suggestions: [
       { icon:'🗄️', title:'SQL is King', desc:'For Data Engineers, SQL is the absolute most important skill. Master window functions, CTEs, and query optimization.' },
@@ -462,7 +486,9 @@ const ROLE_DATA = {
       { title:'HashiCorp Terraform Associate', platform:'Udemy', icon:'🔧', color:'#a855f7', duration:'16 hrs', rating:'4.7', url:'https://www.udemy.com/course/terraform-beginner-to-advanced/' },
       { title:'GCP Associate Cloud Engineer', platform:'Coursera', icon:'☁️', color:'#ef4444', duration:'40 hrs', rating:'4.8', url:'https://www.coursera.org/professional-certificates/gcp-cloud-engineering' },
       { title:'Linux System Administration', platform:'Coursera', icon:'🐧', color:'#10b981', duration:'30 hrs', rating:'4.7', url:'https://www.coursera.org/learn/linux-system-administration' },
-      { title:'Azure Fundamentals (AZ-900)', platform:'Udemy', icon:'Ⓜ️', color:'#06b6d4', duration:'15 hrs', rating:'4.6', url:'https://www.udemy.com/course/microsoft-azure-fundamentals-az-900/' }
+      { title:'Azure Fundamentals (AZ-900)', platform:'Udemy', icon:'Ⓜ️', color:'#06b6d4', duration:'15 hrs', rating:'4.6', url:'https://www.udemy.com/course/microsoft-azure-fundamentals-az-900/' },
+      { title:'Cloud Computing Specialization', platform:'Coursera', icon:'🌐', color:'#10b981', duration:'3 months', rating:'4.8', url:'https://www.coursera.org/specializations/cloud-computing' },
+      { title:'Serverless Architectures', platform:'edX', icon:'⚡', color:'#f59e0b', duration:'15 hrs', rating:'4.7', url:'https://www.edx.org/' }
     ],
     suggestions: [
       { icon:'☁️', title:'Get Cloud Certified', desc:'AWS Solutions Architect Associate is the gold standard entry-level cloud cert. It provides a structured curriculum and validates your skills to employers.' },
@@ -483,9 +509,11 @@ const ROLE_DATA = {
       { title:'DevOps Bootcamp: Docker, K8s, CI/CD', platform:'Udemy', icon:'⚙️', color:'#ef4444', duration:'40 hrs', rating:'4.8', url:'https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/' },
       { title:'Jenkins: CI/CD Pipelines', platform:'Udemy', icon:'🔧', color:'#6366f1', duration:'14 hrs', rating:'4.6', url:'https://www.udemy.com/course/jenkins-from-zero-to-hero/' },
       { title:'Prometheus & Grafana Monitoring', platform:'Udemy', icon:'📈', color:'#10b981', duration:'12 hrs', rating:'4.7', url:'https://www.udemy.com/course/prometheus-and-grafana-the-complete-guide/' },
-      { title:'GitOps with ArgoCD', platform:'YouTube', icon:'🔄', color:'#a855f7', duration:'6 hrs', rating:'4.8', url:'https://www.youtube.com/results?search_query=argocd+gitops' },
+      { title:'GitOps with ArgoCD', platform:'Udemy', icon:'🔄', color:'#a855f7', duration:'8 hrs', rating:'4.8', url:'https://www.udemy.com/course/gitops-argocd/' },
       { title:'Advanced Ansible Playbooks', platform:'Udemy', icon:'🤖', color:'#f59e0b', duration:'12 hrs', rating:'4.7', url:'https://www.udemy.com/course/mastering-ansible/' },
-      { title:'ELK Stack Tutorial', platform:'YouTube', icon:'📊', color:'#ec4899', duration:'10 hrs', rating:'4.6', url:'https://www.youtube.com/results?search_query=elk+stack+tutorial' }
+      { title:'ELK Stack Tutorial', platform:'Coursera', icon:'📊', color:'#ec4899', duration:'15 hrs', rating:'4.7', url:'https://www.coursera.org/' },
+      { title:'AWS Certified DevOps Professional', platform:'Udemy', icon:'☁️', color:'#06b6d4', duration:'30 hrs', rating:'4.8', url:'https://www.udemy.com/' },
+      { title:'Site Reliability Engineering', platform:'Coursera', icon:'🛡️', color:'#10b981', duration:'20 hrs', rating:'4.8', url:'https://www.coursera.org/' }
     ],
     suggestions: [
       { icon:'🔄', title:'Build a Full CI/CD Pipeline', desc:'Set up a complete pipeline using Jenkins or GitHub Actions that builds, tests, and deploys an app. This is the #1 project employers want to see.' },
@@ -529,9 +557,11 @@ function computeResults() {
         { title: 'Complete ' + role + ' Bootcamp', platform: 'Udemy', icon: '🎓', color: '#6366f1', duration: '40 hrs', rating: '4.8', url: 'https://www.udemy.com/courses/search/?q=' + encodeURIComponent(role) },
         { title: role + ' Fundamentals', platform: 'Coursera', icon: '📚', color: '#10b981', duration: '20 hrs', rating: '4.7', url: 'https://www.coursera.org/courses?query=' + encodeURIComponent(role) },
         { title: 'Advanced ' + role + ' Techniques', platform: 'Udemy', icon: '⚙️', color: '#a855f7', duration: '25 hrs', rating: '4.6', url: 'https://www.udemy.com/courses/search/?q=' + encodeURIComponent('Advanced ' + role) },
-        { title: 'Mastering the ' + role + ' Interview', platform: 'YouTube', icon: '🌟', color: '#f59e0b', duration: '15 hrs', rating: '4.8', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(role + ' interview prep') },
+        { title: 'Practical ' + role + ' Workflows', platform: 'Pluralsight', icon: '🌟', color: '#f59e0b', duration: '15 hrs', rating: '4.8', url: 'https://www.pluralsight.com/search?q=' + encodeURIComponent(role) },
         { title: 'Real-world ' + role + ' Projects', platform: 'Coursera', icon: '🛠️', color: '#ec4899', duration: '10 hrs', rating: '4.7', url: 'https://www.coursera.org/courses?query=' + encodeURIComponent(role + ' projects') },
-        { title: role + ' Masterclass', platform: 'Skillshare', icon: '✨', color: '#06b6d4', duration: '12 hrs', rating: '4.8', url: 'https://www.skillshare.com/search?query=' + encodeURIComponent(role) }
+        { title: role + ' Masterclass', platform: 'Skillshare', icon: '✨', color: '#06b6d4', duration: '12 hrs', rating: '4.8', url: 'https://www.skillshare.com/search?query=' + encodeURIComponent(role) },
+        { title: 'Essential ' + role + ' Principles', platform: 'edX', icon: '📖', color: '#10b981', duration: '18 hrs', rating: '4.7', url: 'https://www.edx.org/search?q=' + encodeURIComponent(role) },
+        { title: 'Certification Prep for ' + role, platform: 'Udacity', icon: '🏆', color: '#a855f7', duration: '30 hrs', rating: '4.8', url: 'https://www.udacity.com/courses/all' }
       ],
       suggestions: [
         { icon: '🎯', title: 'Focus on Core Skills', desc: 'Ensure you have a strong understanding of the fundamental principles of being a ' + role + '.' },
@@ -663,6 +693,31 @@ function renderRoadmap(roadmap) {
         ${item.skills.map(s => `<span class="timeline-skill">${s}</span>`).join('')}
       </div>
     </div>`).join('');
+}
+
+/* ── Render Courses ── */
+function renderCourses(courses) {
+  if (!courses || courses.length === 0) {
+    document.getElementById('courseList').innerHTML = '<div style="color:var(--text-muted);padding:20px;">No courses available.</div>';
+    return;
+  }
+  document.getElementById('courseList').innerHTML = courses.map((c, i) => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform 0.3s ease;animation:slideInUp .5s ${i*0.1}s ease both;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='var(--shadow-md)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div style="width:48px;height:48px;border-radius:12px;background:${c.color}22;color:${c.color};display:flex;align-items:center;justify-content:center;font-size:1.5rem;">${c.icon}</div>
+        <div class="badge" style="font-size:0.75rem;"><span style="color:#fbbf24;">★</span> ${c.rating}</div>
+      </div>
+      <div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:6px;color:var(--text-primary);line-height:1.4;">${c.title}</h3>
+        <div style="font-size:0.85rem;color:var(--text-muted);display:flex;gap:8px;align-items:center;">
+          <span style="font-weight:600;color:var(--primary);">${c.platform}</span>
+          <span>•</span>
+          <span>⏱️ ${c.duration}</span>
+        </div>
+      </div>
+      <a href="${c.url}" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;margin-top:auto;justify-content:center;font-size:0.9rem;padding:10px;">View Course →</a>
+    </div>
+  `).join('');
 }
 
 /* ── Certifications ── */
@@ -886,7 +941,7 @@ function renderCertifications(roleName) {
 /* ── Share / Save ── */
 function shareResults(method) {
   const score = analysisResult ? analysisResult.score : 0;
-  const text = `I scored ${score}% on Skill Match for ${role} role! Check your own career readiness at skill-match.app`;
+  const text = `I scored ${score}% on GapVice for ${role} role! Check your own career readiness at gapvice.app`;
   if (method === 'copy') { navigator.clipboard.writeText(window.location.href).then(() => showToast('🔗 Link copied!', 'success')); }
   else if (method === 'linkedin') { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); }
 }
@@ -935,6 +990,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Roadmap
   renderRoadmap(roleData.roadmap);
+
+  // Courses
+  if (roleData.courses) {
+    renderCourses(roleData.courses);
+  }
 
   // Certifications
   setTimeout(() => renderCertifications(r.role), 600);
